@@ -1,0 +1,19 @@
+service: user-service
+
+provider:
+  name: aws
+  runtime: java8
+  memorySize: 1536
+  timeout: 60
+
+package:
+  artifact: target/vertx-user-service.zip
+
+functions:
+  users:
+    handler: rio.brunodrigues.handler.VertxHandler
+    events:
+      - http:
+          path: users
+          method: get
+          cors: true
